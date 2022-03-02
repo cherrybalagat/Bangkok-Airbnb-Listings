@@ -74,71 +74,72 @@ ORDER BY host_total_listings DESC;
 
 /* Show total count of listings and distinct hosts per neighborhood */
 SELECT DISTINCT(neighbourhood), 
-	   COUNT(neighbourhood) as listings, 
-	   COUNT(DISTINCT(host_id)) as distinct_hosts 
+	COUNT(neighbourhood) as listings, 
+    	COUNT(DISTINCT(host_id)) as distinct_hosts 
 FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY COUNT(neighbourhood) DESC;
 
 /*Show average price per neighborhood */
 SELECT DISTINCT(neighbourhood), 
-	   ROUND(AVG(price),2) 
+	ROUND(AVG(price),2) 
 FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY ROUND(AVG(price),2) DESC;
 
 /*Show count of listings and average price per neighborhood */
 SELECT DISTINCT(neighbourhood), 
-	   COUNT(neighbourhood), 
-	   ROUND(AVG(price),2)  
+	COUNT(neighbourhood), 
+	ROUND(AVG(price),2)  
 FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY COUNT(neighbourhood);
 
 /*Show distinct property types and count of listings per type*/
 SELECT DISTINCT(property_type), 
-	   COUNT(property_type)  
+	COUNT(property_type)  
 FROM bkk_airbnb
 GROUP BY property_type
 ORDER BY COUNT(property_type) DESC;
 
 /* Show max number of accommodates and count of listings */
 SELECT DISTINCT(accommodates), 
-	   COUNT(accommodates) 
+	COUNT(accommodates) 
 FROM bkk_airbnb
 GROUP BY accommodates
 ORDER BY accommodates DESC;
 
 /* Show max number of bedrooms and count of listings */
 SELECT DISTINCT(bedrooms), 
-	   COUNT(bedrooms) 
+	COUNT(bedrooms) 
 FROM bkk_airbnb
 GROUP BY bedrooms
 ORDER BY bedrooms DESC;
 
 /* Show count of instant bookable listings */
 SELECT DISTINCT (instant_bookable), 
-	   COUNT(instant_bookable) 
+	COUNT(instant_bookable) 
 FROM bkk_airbnb
 GROUP BY instant_bookable;
 
 /* Show top 10 listings with highest reviews per month */
 SELECT id, 
-	   host_id, 
-	   name, 
-	   neighbourhood, 
-	   reviews_per_month 
+	host_id, 
+	name, 
+	neighbourhood, 
+	reviews_per_month 
 FROM bkk_airbnb
 ORDER BY reviews_per_month DESC
 LIMIT 10;
 
 /* Show top 10 listings with most number of amenities */
 SELECT id, 
-	   host_id, 
-	   name, 
-	   neighbourhood, 
-	   number_amenities, 
-	   price, amenities 
+	host_id, 
+	name, 
+	neighbourhood, 
+	number_amenities, 
+	price, 
+	amenities 
 FROM bkk_airbnb
 ORDER BY number_amenities DESC
 LIMIT 10
