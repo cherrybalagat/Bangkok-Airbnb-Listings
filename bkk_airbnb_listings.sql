@@ -55,7 +55,7 @@ ALTER TABLE bkk_airbnb
 ALTER COLUMN price TYPE numeric
 USING price::numeric;
 
-/*Add column for count of amenities */
+/* Add column for count of amenities */
 ALTER TABLE bkk_airbnb
 ADD COLUMN number_amenities numeric;
 
@@ -66,13 +66,13 @@ SET number_amenities = (((CHAR_LENGTH(amenities)- CHAR_LENGTH(REPLACE(amenities,
 SELECT COUNT(DISTINCT(host_id)) 
 FROM bkk_airbnb;
 
-/*Count number of total listings per distinct host IDs */
+/*Count number of listings per distinct host IDs */
 SELECT DISTINCT(host_id), 
 	   host_total_listings 
 FROM bkk_airbnb
 ORDER BY host_total_listings DESC;
 
-/* Show total count of listings and distinct hosts per neighborhood */
+/* Show count of listings and distinct hosts per neighborhood */
 SELECT DISTINCT(neighbourhood), 
 	COUNT(neighbourhood) as listings, 
     	COUNT(DISTINCT(host_id)) as distinct_hosts 
@@ -80,14 +80,14 @@ FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY COUNT(neighbourhood) DESC;
 
-/*Show average price per neighborhood */
+/* Show average price per neighborhood */
 SELECT DISTINCT(neighbourhood), 
 	ROUND(AVG(price),2) 
 FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY ROUND(AVG(price),2) DESC;
 
-/*Show count of listings and average price per neighborhood */
+/* Show count of listings and average price per neighborhood */
 SELECT DISTINCT(neighbourhood), 
 	COUNT(neighbourhood), 
 	ROUND(AVG(price),2)  
@@ -95,21 +95,21 @@ FROM bkk_airbnb
 GROUP BY neighbourhood
 ORDER BY COUNT(neighbourhood);
 
-/*Show distinct property types and count of listings per type*/
+/* Show distinct property types and count of listings per type*/
 SELECT DISTINCT(property_type), 
 	COUNT(property_type)  
 FROM bkk_airbnb
 GROUP BY property_type
 ORDER BY COUNT(property_type) DESC;
 
-/* Show max number of accommodates and count of listings */
+/* Show distinct number of accommodates and count of listings for each */
 SELECT DISTINCT(accommodates), 
 	COUNT(accommodates) 
 FROM bkk_airbnb
 GROUP BY accommodates
 ORDER BY accommodates DESC;
 
-/* Show max number of bedrooms and count of listings */
+/* Show distinct number of bedrooms and count of listings */
 SELECT DISTINCT(bedrooms), 
 	COUNT(bedrooms) 
 FROM bkk_airbnb
